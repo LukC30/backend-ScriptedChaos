@@ -12,3 +12,14 @@ def xd():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# y = 0
+# x = 1
+
+# def soma(x):
+
+#     x = x + 1
+#     print(x)
+#     return soma(x)
+
+# soma(x)

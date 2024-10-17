@@ -1,4 +1,8 @@
 import mysql.connector
+from flask import jsonify
+import mysql.connector.cursor
+import requests
+
 
 
 class Database:
@@ -9,9 +13,24 @@ class Database:
             self.host : host,
             self.database : database
         }
-    
-        db = mysql.connector.connect(db_config)
+        try:
+            db = mysql.connector.connect(db_config)
+        except Exception as e:
+            return jsonify({"message":f"{e}"})
+        
+        self.cursor = mysql.connector.cursor()
+        
+    def insert(self, data, table):
+        self.command = f"Insert into {table}"
+        return 
+    def insertWithWhere()
+        
 
+    def execute(query)
+
+
+        
+    
 
 
 
