@@ -1,32 +1,43 @@
 import mysql.connector
 from flask import jsonify
 import mysql.connector.cursor
-import requests
 
 
+class Database():
+    user = ""
+    password = ""
+    host = ""
+    db = ""
 
-class Database:
     def __init__(self, user, password, host, database):
+        
         db_config = {
             self.user : user,
             self.password : password,
             self.host : host,
-            self.database : database
+            self.db : database
         }
         try:
             db = mysql.connector.connect(db_config)
         except Exception as e:
-            return jsonify({"message":f"{e}"})
+            return jsonify({f"message": e})
         
-        self.cursor = mysql.connector.cursor()
+        self.cursor = db.cursor()
         
-    def insert(self, data, table):
-        self.command = f"Insert into {table}"
         return 
-    def insertWithWhere()
+    def insertCommand(self, fields, table, values):
+        self.command = f"Insert into {table}({fields}) values({values})"
+        return self.command
         
+    def insertDatabase(self, fields, table, values, runTime):
+        for i in runTime:
+            try:
+                self.cursor.execute(self.insertCommand(fields, table, values))
+            except Exception as e:
+                return jsonify({"message" : f"Erro no cadastro: {e}"})
+        self.cursor.close()
 
-    def execute(query)
+        return jsonify({"message": f"cadastro feito com sucesso, {str(runTime)} cadastros feitos"})
 
 
         
